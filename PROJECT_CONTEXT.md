@@ -44,7 +44,20 @@ C:\Users\asus\Desktop\anime-platform
 - 已完成主分类和多标签体系，支持组合筛选。
 - 已完成评论、收藏、评分和个人互动记录。
 - 已完成后台统计、动漫、分类、标签、资讯、评论、用户管理。
-- 当前阶段重点是界面打磨、统计看板完善、论文截图和文档整理。
+- 已完成移动端基础收尾和论文支撑文档整理。
+- 当前阶段剩余重点是论文正文撰写、截图采集和最终验收。
+
+## 论文材料
+
+```text
+docs/API_REFERENCE.md
+docs/MODULE_DESIGN.md
+docs/ER_DIAGRAM.md
+docs/SYSTEM_STRUCTURE.md
+docs/TEST_CASES.md
+docs/SCREENSHOT_CHECKLIST.md
+docs/FINAL_ACCEPTANCE.md
+```
 
 ## 默认账号
 

@@ -1053,7 +1053,7 @@ button,
     align-items: flex-start;
     flex-direction: column;
     height: auto !important;
-    padding: 14px;
+    padding: 12px 14px;
   }
 
   .header-right {
@@ -1064,6 +1064,8 @@ button,
   }
 
   .app-header .el-menu.el-menu--horizontal {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
   }
 
@@ -1076,6 +1078,7 @@ button,
   .app-header .el-menu--horizontal > .el-submenu .el-submenu__title {
     height: 44px;
     line-height: 44px;
+    padding: 0 14px;
   }
 
   .el-main {
@@ -1086,7 +1089,15 @@ button,
   .library-head {
     align-items: flex-start;
     flex-direction: column;
-    padding: 20px;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .page-head .filter-form,
+  .page-head .filter-form .el-form-item,
+  .page-head .filter-form .el-form-item__content,
+  .page-head .filter-form .el-input {
+    width: 100%;
   }
 
   .filter-card .el-input,
@@ -1102,11 +1113,11 @@ button,
 
   .hero-carousel,
   .hero-carousel .el-carousel__container {
-    height: 450px !important;
+    height: 390px !important;
   }
 
   .hero-anime {
-    min-height: 450px;
+    min-height: 390px;
     padding: 28px;
   }
 
@@ -1117,9 +1128,29 @@ button,
   .detail-poster {
     max-width: 280px;
   }
+
+  .chart {
+    height: 300px;
+  }
+
+  .stat-row .el-col {
+    margin-bottom: 12px;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
 }
 
 @media (max-width: 560px) {
+  body {
+    font-size: 15px;
+  }
+
+  .app-header {
+    padding: 10px 12px;
+  }
+
   .brand {
     gap: 9px;
   }
@@ -1157,14 +1188,93 @@ button,
   }
 
   .app-header .el-menu.el-menu--horizontal {
-    display: flex;
+    gap: 2px 4px;
+  }
+
+  .app-header .el-menu--horizontal > .el-menu-item,
+  .app-header .el-menu--horizontal > .el-submenu .el-submenu__title {
+    height: 38px;
+    line-height: 38px;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+
+  .auth-actions {
     flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .user-name {
+    max-width: 180px;
+  }
+
+  .el-main {
+    padding: 12px;
+  }
+
+  .page-head,
+  .library-head {
+    margin-bottom: 14px;
+    padding: 16px;
+  }
+
+  .page-head h1,
+  .library-head h1 {
+    font-size: 26px;
+  }
+
+  .hero-carousel,
+  .hero-carousel .el-carousel__container {
+    height: 360px !important;
+  }
+
+  .hero-anime {
+    min-height: 360px;
+    padding: 22px;
+    background-position: center;
+  }
+
+  .hero-content h1 {
+    margin: 16px 0 10px;
+    font-size: 34px;
   }
 
   .hero-content p,
   .detail-desc {
     font-size: 15px;
     line-height: 1.75;
+  }
+
+  .hero-meta,
+  .detail-hero .hero-meta,
+  .hero-tags {
+    gap: 7px;
+  }
+
+  .hero-meta span,
+  .detail-hero .hero-meta span,
+  .hero-tags span,
+  .anime-tags em {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .hero-actions {
+    margin-top: 18px;
+  }
+
+  .home-section {
+    margin-top: 20px;
+  }
+
+  .section-title {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .section-title h2 {
+    font-size: 22px;
   }
 
   .poster-row,
@@ -1182,6 +1292,41 @@ button,
     grid-template-columns: 1fr;
   }
 
+  .category-wall button {
+    min-height: 58px;
+    padding: 14px;
+  }
+
+  .filter-card {
+    margin-bottom: 14px;
+  }
+
+  .library-summary {
+    gap: 8px 10px;
+    padding: 12px;
+  }
+
+  .library-summary strong {
+    font-size: 19px;
+  }
+
+  .detail-hero {
+    gap: 20px;
+    padding: 18px;
+  }
+
+  .detail-poster {
+    max-width: 220px;
+  }
+
+  .detail-info h1 {
+    font-size: 30px;
+  }
+
+  .interaction-row .el-col {
+    margin-bottom: 14px;
+  }
+
   .interaction-stats {
     grid-template-columns: 1fr;
   }
@@ -1189,5 +1334,32 @@ button,
   .comment-meta {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-item {
+    grid-template-columns: 62px minmax(0, 1fr);
+    padding: 12px;
+  }
+
+  .activity-item img {
+    width: 62px;
+    height: 84px;
+  }
+
+  .chart {
+    height: 260px;
+  }
+
+  .chart-card .el-card__body {
+    padding: 12px;
+  }
+
+  .auth-page {
+    min-height: calc(100vh - 180px);
+    padding: 32px 0;
   }
 }
