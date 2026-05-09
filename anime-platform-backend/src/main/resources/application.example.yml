@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      force-response: true
+
+spring:
+  application:
+    name: anime-platform-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://localhost:3306/anime_platform?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:anime_user}
+    password: ${DB_PASSWORD:change_me}
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+logging:
+  level:
+    com.mhj.anime: debug
+
+jwt:
+  secret: ${JWT_SECRET:change_me_to_a_long_random_secret}
+  expiration: ${JWT_EXPIRATION:86400000}
