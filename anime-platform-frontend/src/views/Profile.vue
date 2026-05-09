@@ -34,7 +34,7 @@
           <el-empty v-if="!favorites.length" description="暂无收藏记录" />
           <div v-else class="activity-grid">
             <div v-for="item in favorites" :key="item.favoriteId" class="activity-item">
-              <img :src="item.coverImage" :alt="item.title">
+              <img :src="item.coverImage" :alt="item.title" loading="lazy">
               <div>
                 <h3>{{ item.title }}</h3>
                 <p>{{ item.categoryName }} · 站内评分 {{ item.score || '暂无' }}</p>
@@ -50,7 +50,7 @@
           <el-empty v-if="!ratings.length" description="暂无评分记录" />
           <el-table v-else :data="ratings" stripe>
             <el-table-column label="动漫" min-width="220">
-              <template slot-scope="{ row }"><div class="mini-anime"><img :src="row.coverImage" :alt="row.title"><span>{{ row.title }}</span></div></template>
+              <template slot-scope="{ row }"><div class="mini-anime"><img :src="row.coverImage" :alt="row.title" loading="lazy"><span>{{ row.title }}</span></div></template>
             </el-table-column>
             <el-table-column prop="rating" label="我的评分" width="120" />
             <el-table-column prop="animeScore" label="站内均分" width="120" />

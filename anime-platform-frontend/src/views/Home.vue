@@ -43,7 +43,7 @@
       </div>
       <div class="poster-row">
         <div v-for="item in topAnime" :key="item.id" class="poster-card" @click="$router.push(`/anime/${item.id}`)">
-          <img :src="item.coverImage" :alt="item.title">
+          <img :src="item.coverImage" :alt="item.title" loading="lazy">
           <div>
             <strong>{{ item.title }}</strong>
             <span>{{ item.releaseYear }} · {{ item.categoryName }}</span>
@@ -77,7 +77,7 @@
           </div>
           <div v-for="(item, index) in rankingAnime" :key="item.id" class="rank-item" @click="$router.push(`/anime/${item.id}`)">
             <span>{{ index + 1 }}</span>
-            <img :src="item.coverImage" :alt="item.title">
+            <img :src="item.coverImage" :alt="item.title" loading="lazy">
             <div>
               <strong>{{ item.title }}</strong>
               <em>{{ item.score }}</em>
@@ -111,7 +111,7 @@
             <el-button type="text" @click="$router.push('/news')">更多</el-button>
           </div>
           <div v-for="item in newsList" :key="item.id" class="news-line" @click="$router.push(`/news/${item.id}`)">
-            <img :src="item.coverImage" :alt="item.title">
+            <img :src="item.coverImage" :alt="item.title" loading="lazy">
             <div>
               <strong>{{ item.title }}</strong>
               <span>{{ item.summary }}</span>

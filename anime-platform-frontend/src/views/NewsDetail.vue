@@ -2,7 +2,7 @@
   <section v-loading="loading">
     <el-button class="back-button" icon="el-icon-arrow-left" @click="$router.push('/news')">返回资讯</el-button>
     <article v-if="news" class="news-detail">
-      <img class="news-detail-cover" :src="news.coverImage" :alt="news.title">
+      <img class="news-detail-cover" :src="news.coverImage" :alt="news.title" loading="lazy">
       <div class="news-detail-body">
         <span class="eyebrow">News Detail</span>
         <h1>{{ news.title }}</h1>

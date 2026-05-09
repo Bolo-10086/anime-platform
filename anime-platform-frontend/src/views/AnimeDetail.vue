@@ -63,7 +63,7 @@
         <el-card v-if="relatedAnime.length" shadow="never" class="interaction-card related-card">
           <div slot="header">同类推荐</div>
           <div v-for="item in relatedAnime" :key="item.id" class="related-item" @click="$router.push(`/anime/${item.id}`)">
-            <img :src="item.coverImage" :alt="item.title">
+            <img :src="item.coverImage" :alt="item.title" loading="lazy">
             <div>
               <strong>{{ item.title }}</strong>
               <span>{{ item.releaseYear }} · {{ item.score }}</span>

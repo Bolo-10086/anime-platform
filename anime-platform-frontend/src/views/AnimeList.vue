@@ -76,7 +76,7 @@
     <div v-loading="loading" class="anime-grid">
       <div v-for="item in animeList" :key="item.id" class="anime-card" @click="$router.push(`/anime/${item.id}`)">
         <div class="anime-poster">
-          <img :src="item.coverImage" :alt="item.title">
+          <img :src="item.coverImage" :alt="item.title" loading="lazy">
           <span>{{ item.score }}</span>
         </div>
         <div class="anime-card-body">

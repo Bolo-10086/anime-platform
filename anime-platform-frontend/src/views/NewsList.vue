@@ -17,7 +17,7 @@
     <el-row :gutter="18">
       <el-col v-for="item in newsList" :key="item.id" :xs="24" :sm="12" :lg="8">
         <el-card class="news-card" shadow="never" @click.native="$router.push(`/news/${item.id}`)">
-          <img class="news-cover" :src="item.coverImage" :alt="item.title">
+          <img class="news-cover" :src="item.coverImage" :alt="item.title" loading="lazy">
           <div class="news-body">
             <h2>{{ item.title }}</h2>
             <p>{{ item.summary }}</p>
