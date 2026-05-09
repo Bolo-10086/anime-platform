@@ -63,7 +63,6 @@
         <div class="category-wall">
           <button v-for="category in categories" :key="category.id" @click="goAnimeByCategory(category)">
             <strong>{{ category.name }}</strong>
-            <span>{{ category.description }}</span>
           </button>
         </div>
       </el-col>

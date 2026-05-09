@@ -8,7 +8,7 @@
   --color-page: #fff1f2;
   --color-ink: #18181b;
   --color-text: #27272a;
-  --color-muted: #71717a;
+  --color-muted: #27272a;
   --color-border: #fecdd3;
   --color-border-soft: #f3e8eb;
   --color-header: rgba(255, 255, 255, .88);
@@ -76,22 +76,73 @@ button,
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: var(--color-ink);
-  font-size: 20px;
-  font-weight: 900;
   cursor: pointer;
 }
 
 .brand-mark {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius);
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: #fff;
   box-shadow: 0 10px 24px rgba(225, 29, 72, .35);
+}
+
+.brand-mark::before,
+.brand-mark::after,
+.brand-mark i {
+  content: "";
+  position: absolute;
+  background: rgba(255,255,255,.94);
+}
+
+.brand-mark::before {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+}
+
+.brand-mark::after {
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid rgba(225, 29, 72, .92);
+  background: transparent;
+}
+
+.brand-mark i {
+  left: 8px;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  box-shadow: 0 12px 0 rgba(255,255,255,.94), 22px 0 0 rgba(255,255,255,.94), 22px 12px 0 rgba(255,255,255,.94);
+}
+
+.brand-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.brand-copy strong {
+  color: var(--color-ink);
+  font-size: 21px;
+  line-height: 1.05;
+}
+
+.brand-copy em {
+  color: var(--color-primary);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .header-right {
@@ -382,7 +433,7 @@ button,
 }
 
 .category-wall button {
-  min-height: 104px;
+  min-height: 72px;
   padding: 18px;
   border: 1px solid var(--color-border-soft);
   border-radius: var(--radius);
@@ -393,19 +444,13 @@ button,
   transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
 }
 
-.category-wall strong,
-.category-wall span {
+.category-wall strong {
   display: block;
 }
 
 .category-wall strong {
   color: var(--color-ink);
-}
-
-.category-wall span {
-  margin-top: 8px;
-  color: var(--color-muted);
-  line-height: 1.6;
+  font-size: 17px;
 }
 
 .ranking-panel,
@@ -572,7 +617,7 @@ button,
   border: 1px solid var(--color-border-soft);
   border-radius: var(--radius);
   background: rgba(255,255,255,.72);
-  color: var(--color-muted);
+  color: var(--color-text);
 }
 
 .library-summary strong {
@@ -777,7 +822,7 @@ button,
   justify-content: center;
   gap: 6px;
   margin-top: 18px;
-  color: var(--color-muted);
+  color: var(--color-text);
 }
 
 .profile-card {
@@ -874,7 +919,7 @@ button,
 
 .news-body p,
 .news-summary {
-  color: var(--color-muted);
+  color: var(--color-text);
   line-height: 1.7;
 }
 
@@ -918,9 +963,18 @@ button,
   font-weight: 900;
 }
 
+.stat-card strong {
+  color: var(--color-ink);
+  font-size: 15px;
+}
+
 .chart {
   width: 100%;
   height: 340px;
+}
+
+.chart-card {
+  margin-bottom: 18px;
 }
 
 .danger-text {
@@ -1005,7 +1059,17 @@ button,
   .header-right {
     align-items: flex-start;
     flex-direction: column;
+    gap: 8px;
     width: 100%;
+  }
+
+  .app-header .el-menu.el-menu--horizontal {
+    width: 100%;
+  }
+
+  .auth-actions {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .app-header .el-menu--horizontal > .el-menu-item,
@@ -1057,7 +1121,39 @@ button,
 
 @media (max-width: 560px) {
   .brand {
+    gap: 9px;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-mark::before {
+    width: 15px;
+    height: 15px;
+  }
+
+  .brand-mark::after {
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 8px;
+  }
+
+  .brand-mark i {
+    left: 7px;
+    top: 6px;
+    width: 3px;
+    height: 3px;
+    box-shadow: 0 10px 0 rgba(255,255,255,.94), 18px 0 0 rgba(255,255,255,.94), 18px 10px 0 rgba(255,255,255,.94);
+  }
+
+  .brand-copy strong {
     font-size: 18px;
+  }
+
+  .brand-copy em {
+    font-size: 11px;
   }
 
   .app-header .el-menu.el-menu--horizontal {

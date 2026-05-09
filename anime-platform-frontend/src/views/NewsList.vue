@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">News</span>
         <h1>资讯中心</h1>
-        <p>浏览平台公告、动漫资讯和内容更新。</p>
       </div>
       <el-form class="filter-form" :inline="true" @submit.native.prevent>
         <el-form-item>

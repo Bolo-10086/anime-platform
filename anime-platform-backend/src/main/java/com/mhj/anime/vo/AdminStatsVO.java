@@ -10,7 +10,11 @@ public class AdminStatsVO {
     private Integer favoriteCount;
     private Integer ratingCount;
     private List<NameValueVO> categoryStats;
+    private List<NameValueVO> yearStats;
+    private List<NameValueVO> scoreStats;
     private List<NameValueVO> topViewedAnime;
+    private List<NameValueVO> topFavoriteAnime;
+    private List<NameValueVO> topViewedNews;
 
     public Integer getAnimeCount() {
         return animeCount;
@@ -60,11 +64,43 @@ public class AdminStatsVO {
         this.categoryStats = categoryStats;
     }
 
+    public List<NameValueVO> getYearStats() {
+        return yearStats;
+    }
+
+    public void setYearStats(List<NameValueVO> yearStats) {
+        this.yearStats = yearStats;
+    }
+
+    public List<NameValueVO> getScoreStats() {
+        return scoreStats;
+    }
+
+    public void setScoreStats(List<NameValueVO> scoreStats) {
+        this.scoreStats = scoreStats;
+    }
+
     public List<NameValueVO> getTopViewedAnime() {
         return topViewedAnime;
     }
 
     public void setTopViewedAnime(List<NameValueVO> topViewedAnime) {
         this.topViewedAnime = topViewedAnime;
+    }
+
+    public List<NameValueVO> getTopFavoriteAnime() {
+        return topFavoriteAnime;
+    }
+
+    public void setTopFavoriteAnime(List<NameValueVO> topFavoriteAnime) {
+        this.topFavoriteAnime = topFavoriteAnime;
+    }
+
+    public List<NameValueVO> getTopViewedNews() {
+        return topViewedNews;
+    }
+
+    public void setTopViewedNews(List<NameValueVO> topViewedNews) {
+        this.topViewedNews = topViewedNews;
     }
 }

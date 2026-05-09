@@ -23,7 +23,11 @@ public class AdminStatsServiceImpl implements AdminStatsService {
         stats.setFavoriteCount(adminStatsMapper.countFavorite());
         stats.setRatingCount(adminStatsMapper.countRating());
         stats.setCategoryStats(adminStatsMapper.selectCategoryStats());
+        stats.setYearStats(adminStatsMapper.selectYearStats());
+        stats.setScoreStats(adminStatsMapper.selectScoreStats());
         stats.setTopViewedAnime(adminStatsMapper.selectTopViewedAnime());
+        stats.setTopFavoriteAnime(adminStatsMapper.selectTopFavoriteAnime());
+        stats.setTopViewedNews(adminStatsMapper.selectTopViewedNews());
         return stats;
     }
 }

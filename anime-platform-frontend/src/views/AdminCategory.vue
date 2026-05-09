@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">Admin</span>
         <h1>分类管理</h1>
-        <p>主分类用于动漫检索、首页入口和统计图表。</p>
       </div>
       <el-button type="primary" icon="el-icon-plus" @click="openCreate">新增分类</el-button>
     </div>

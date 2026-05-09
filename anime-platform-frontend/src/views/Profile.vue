@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">User Center</span>
         <h1>个人中心</h1>
-        <p>集中查看账号资料和个人互动记录。</p>
       </div>
       <el-button type="primary" icon="el-icon-refresh" :loading="loading" @click="loadAll">刷新</el-button>
     </div>

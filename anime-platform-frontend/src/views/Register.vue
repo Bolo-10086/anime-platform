@@ -3,7 +3,6 @@
     <el-card class="auth-card" shadow="never">
       <div class="auth-head">
         <h1>注册</h1>
-        <p>创建账号后可参与动漫收藏、评分和评论互动。</p>
       </div>
       <el-form ref="form" :model="form" :rules="rules" label-position="top" @keyup.enter.native="handleSubmit">
         <el-form-item label="用户名" prop="username">

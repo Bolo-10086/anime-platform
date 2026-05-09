@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">Anime Library</span>
         <h1>动漫库</h1>
-        <p>按分类、标签、年份、地区和作品类型检索近十年热门动漫。</p>
       </div>
     </div>
 

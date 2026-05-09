@@ -2,8 +2,11 @@
   <el-container class="app-shell">
     <el-header class="app-header">
       <div class="brand" @click="$router.push('/home')">
-        <span class="brand-mark">A</span>
-        <span>AnimeHub</span>
+        <span class="brand-mark"><i></i></span>
+        <span class="brand-copy">
+          <strong>AnimeHub</strong>
+          <em>动漫资料库</em>
+        </span>
       </div>
       <div class="header-right">
         <el-menu mode="horizontal" router :default-active="$route.path" background-color="transparent" text-color="#3f3f46" active-text-color="#e11d48">

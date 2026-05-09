@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">Admin</span>
         <h1>标签管理</h1>
-        <p>标签用于更细粒度的题材筛选和首页标签入口。</p>
       </div>
       <el-button type="primary" icon="el-icon-plus" @click="openCreate">新增标签</el-button>
     </div>

@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">Admin</span>
         <h1>评论管理</h1>
-        <p>管理用户评论的显示状态，维护前台互动内容质量。</p>
       </div>
     </div>
 

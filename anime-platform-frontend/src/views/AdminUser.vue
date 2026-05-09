@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">Admin</span>
         <h1>用户管理</h1>
-        <p>查看用户状态、角色和互动数据，并管理账号启用状态。</p>
       </div>
     </div>
 

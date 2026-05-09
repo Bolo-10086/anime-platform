@@ -3,7 +3,6 @@
     <el-card class="auth-card" shadow="never">
       <div class="auth-head">
         <h1>登录</h1>
-        <p>登录后可使用收藏、评分、评论和个人中心功能。</p>
       </div>
       <el-form ref="form" :model="form" :rules="rules" label-position="top" @keyup.enter.native="handleSubmit">
         <el-form-item label="用户名" prop="username">

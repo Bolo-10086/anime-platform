@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">Admin</span>
         <h1>资讯管理</h1>
-        <p>发布和维护前台资讯中心内容。</p>
       </div>
       <el-button type="primary" icon="el-icon-plus" @click="openCreate">新增资讯</el-button>
     </div>

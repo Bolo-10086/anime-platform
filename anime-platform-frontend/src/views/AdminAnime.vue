@@ -4,7 +4,6 @@
       <div>
         <span class="eyebrow">Admin</span>
         <h1>动漫管理</h1>
-        <p>维护动漫基础资料、分类标签、封面和正版入口。</p>
       </div>
       <el-button type="primary" icon="el-icon-plus" @click="openCreate">新增动漫</el-button>
     </div>
@@ -102,7 +101,7 @@
           </el-col>
         </el-row>
         <el-form-item label="封面链接" prop="coverImage"><el-input v-model.trim="form.coverImage" /></el-form-item>
-        <el-form-item label="横幅链接"><el-input v-model.trim="form.bannerImage" placeholder="用于首页轮播和详情页大背景，建议使用横版图片" /></el-form-item>
+        <el-form-item label="横幅链接"><el-input v-model.trim="form.bannerImage" /></el-form-item>
         <el-form-item label="正版来源"><el-input v-model.trim="form.sourceName" /></el-form-item>
         <el-form-item label="观看入口"><el-input v-model.trim="form.watchUrl" /></el-form-item>
         <el-form-item label="预告入口"><el-input v-model.trim="form.trailerUrl" /></el-form-item>
