@@ -65,7 +65,10 @@
             <div v-for="item in comments" :key="item.commentId" class="comment-item">
               <div class="comment-meta">
                 <strong>{{ item.title }}</strong>
-                <el-button type="text" size="mini" @click="$router.push(`/anime/${item.animeId}`)">查看动漫</el-button>
+                <div class="comment-actions">
+                  <el-button type="text" size="mini" @click="$router.push(`/anime/${item.animeId}`)">查看动漫</el-button>
+                  <el-button type="text" size="mini" class="danger-text" @click="deleteComment(item.commentId)">删除</el-button>
+                </div>
               </div>
               <p>{{ item.content }}</p>
             </div>
@@ -78,7 +81,7 @@
 
 <script>
 import { getProfile } from '../api/auth'
-import { getUserComments, getUserFavorites, getUserRatings } from '../api/anime'
+import { deleteUserComment, getUserComments, getUserFavorites, getUserRatings } from '../api/anime'
 
 export default {
   name: 'Profile',
@@ -118,6 +121,12 @@ export default {
     },
     openExternal(url) {
       window.open(url, '_blank', 'noopener,noreferrer')
+    },
+    async deleteComment(commentId) {
+      await this.$confirm('确定删除这条评论吗？', '删除评论', { type: 'warning' })
+      await deleteUserComment(commentId)
+      this.comments = this.comments.filter(item => item.commentId !== commentId)
+      this.$message.success('评论已删除')
     }
   }
 }

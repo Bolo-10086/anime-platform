@@ -35,6 +35,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/anime/list",
                         "/api/anime/detail/**",
                         "/api/anime/*/comments",
+                        "/api/anime/*/interaction-summary",
                         "/api/category/list",
                         "/api/tag/list",
                         "/api/news/list",

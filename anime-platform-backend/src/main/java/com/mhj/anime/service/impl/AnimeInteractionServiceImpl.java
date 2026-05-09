@@ -13,6 +13,7 @@ import com.mhj.anime.mapper.AnimeRatingMapper;
 import com.mhj.anime.service.AnimeInfoService;
 import com.mhj.anime.service.AnimeInteractionService;
 import com.mhj.anime.vo.CommentVO;
+import com.mhj.anime.vo.InteractionSummaryVO;
 import com.mhj.anime.vo.UserAnimeStateVO;
 import com.mhj.anime.vo.UserCommentVO;
 import com.mhj.anime.vo.UserFavoriteVO;
@@ -49,6 +50,21 @@ public class AnimeInteractionServiceImpl implements AnimeInteractionService {
     }
 
     @Override
+    public InteractionSummaryVO getInteractionSummary(Long animeId) {
+        ensureAnimeExists(animeId);
+        InteractionSummaryVO summary = new InteractionSummaryVO();
+        summary.setCommentCount(Math.toIntExact(animeCommentMapper.selectCount(new LambdaQueryWrapper<AnimeComment>()
+                .eq(AnimeComment::getAnimeId, animeId)
+                .eq(AnimeComment::getStatus, 1))));
+        summary.setFavoriteCount(Math.toIntExact(animeFavoriteMapper.selectCount(new LambdaQueryWrapper<AnimeFavorite>()
+                .eq(AnimeFavorite::getAnimeId, animeId))));
+        summary.setRatingCount(Math.toIntExact(animeRatingMapper.selectCount(new LambdaQueryWrapper<AnimeRating>()
+                .eq(AnimeRating::getAnimeId, animeId))));
+        summary.setAverageRating(animeRatingMapper.selectAverageRating(animeId));
+        return summary;
+    }
+
+    @Override
     public CommentVO addComment(Long animeId, Long userId, CommentRequest request) {
         ensureAnimeExists(animeId);
         if (request == null || !StringUtils.hasText(request.getContent())) {
@@ -68,6 +84,19 @@ public class AnimeInteractionServiceImpl implements AnimeInteractionService {
                 .filter(item -> item.getId().equals(comment.getId()))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public void deleteUserComment(Long commentId, Long userId) {
+        if (commentId == null) {
+            throw new IllegalArgumentException("评论ID不能为空");
+        }
+        AnimeComment comment = animeCommentMapper.selectById(commentId);
+        if (comment == null || !userId.equals(comment.getUserId())) {
+            throw new IllegalArgumentException("评论不存在或无权操作");
+        }
+        comment.setStatus(0);
+        animeCommentMapper.updateById(comment);
     }
 
     @Override

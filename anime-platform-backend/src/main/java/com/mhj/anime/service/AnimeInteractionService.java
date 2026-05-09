@@ -3,6 +3,7 @@ package com.mhj.anime.service;
 import com.mhj.anime.dto.CommentRequest;
 import com.mhj.anime.dto.RatingRequest;
 import com.mhj.anime.vo.CommentVO;
+import com.mhj.anime.vo.InteractionSummaryVO;
 import com.mhj.anime.vo.UserAnimeStateVO;
 import com.mhj.anime.vo.UserCommentVO;
 import com.mhj.anime.vo.UserFavoriteVO;
@@ -14,7 +15,11 @@ public interface AnimeInteractionService {
 
     List<CommentVO> listComments(Long animeId);
 
+    InteractionSummaryVO getInteractionSummary(Long animeId);
+
     CommentVO addComment(Long animeId, Long userId, CommentRequest request);
+
+    void deleteUserComment(Long commentId, Long userId);
 
     UserAnimeStateVO getUserState(Long animeId, Long userId);
 

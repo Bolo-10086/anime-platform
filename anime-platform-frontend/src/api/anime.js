@@ -53,6 +53,13 @@ export function getAnimeComments(animeId) {
   })
 }
 
+export function getAnimeInteractionSummary(animeId) {
+  return request({
+    url: `/anime/${animeId}/interaction-summary`,
+    method: 'get'
+  })
+}
+
 export function getUserAnimeState(animeId) {
   return request({
     url: `/user/anime/${animeId}/state`,
@@ -65,6 +72,13 @@ export function addAnimeComment(animeId, content) {
     url: `/user/anime/${animeId}/comments`,
     method: 'post',
     data: { content }
+  })
+}
+
+export function deleteUserComment(commentId) {
+  return request({
+    url: `/user/comments/${commentId}`,
+    method: 'delete'
   })
 }
 

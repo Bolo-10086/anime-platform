@@ -5,6 +5,7 @@ import com.mhj.anime.dto.CommentRequest;
 import com.mhj.anime.dto.RatingRequest;
 import com.mhj.anime.service.AnimeInteractionService;
 import com.mhj.anime.vo.CommentVO;
+import com.mhj.anime.vo.InteractionSummaryVO;
 import com.mhj.anime.vo.UserAnimeStateVO;
 import com.mhj.anime.vo.UserCommentVO;
 import com.mhj.anime.vo.UserFavoriteVO;
@@ -33,6 +34,11 @@ public class AnimeInteractionController {
         return ApiResult.success(animeInteractionService.listComments(animeId));
     }
 
+    @GetMapping(value = "/api/anime/{animeId}/interaction-summary", produces = "application/json;charset=UTF-8")
+    public ApiResult<InteractionSummaryVO> interactionSummary(@PathVariable Long animeId) {
+        return ApiResult.success(animeInteractionService.getInteractionSummary(animeId));
+    }
+
     @GetMapping(value = "/api/user/anime/{animeId}/state", produces = "application/json;charset=UTF-8")
     public ApiResult<UserAnimeStateVO> state(@PathVariable Long animeId,
                                              @RequestAttribute("currentUserId") Long currentUserId) {
@@ -44,6 +50,13 @@ public class AnimeInteractionController {
                                            @RequestAttribute("currentUserId") Long currentUserId,
                                            @RequestBody CommentRequest request) {
         return ApiResult.success(animeInteractionService.addComment(animeId, currentUserId, request));
+    }
+
+    @DeleteMapping(value = "/api/user/comments/{commentId}", produces = "application/json;charset=UTF-8")
+    public ApiResult<Void> deleteComment(@PathVariable Long commentId,
+                                         @RequestAttribute("currentUserId") Long currentUserId) {
+        animeInteractionService.deleteUserComment(commentId, currentUserId);
+        return ApiResult.success(null);
     }
 
     @PostMapping(value = "/api/user/anime/{animeId}/favorite", produces = "application/json;charset=UTF-8")
