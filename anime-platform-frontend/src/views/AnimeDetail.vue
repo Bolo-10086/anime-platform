@@ -5,7 +5,7 @@
     <div
       v-if="anime"
       class="detail-hero"
-      :style="{ backgroundImage: `linear-gradient(90deg, rgba(17,24,39,.94), rgba(17,24,39,.78), rgba(17,24,39,.38)), url(${anime.coverImage})` }"
+      :style="{ backgroundImage: `linear-gradient(90deg, rgba(17,24,39,.9), rgba(17,24,39,.68), rgba(17,24,39,.28)), url(${displayBanner(anime)})` }"
     >
       <img class="detail-poster" :src="anime.coverImage" :alt="anime.title">
       <div class="detail-info">
@@ -242,6 +242,9 @@ export default {
     },
     splitTags(value) {
       return value ? value.split(',').map(item => item.trim()).filter(Boolean) : []
+    },
+    displayBanner(item) {
+      return item.bannerImage || item.coverImage
     },
     formatTime(value) {
       return value ? String(value).replace('T', ' ').slice(0, 16) : ''

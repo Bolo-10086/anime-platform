@@ -50,6 +50,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void ensureSchema() {
+        addColumnIfMissing("anime_info", "banner_image", "ALTER TABLE anime_info ADD COLUMN banner_image VARCHAR(500) NULL COMMENT '横幅背景图' AFTER cover_image");
         addColumnIfMissing("anime_info", "type", "ALTER TABLE anime_info ADD COLUMN type VARCHAR(30) NULL COMMENT '作品类型' AFTER region");
         addColumnIfMissing("anime_info", "tag_names", "ALTER TABLE anime_info ADD COLUMN tag_names VARCHAR(300) NULL COMMENT '标签名称' AFTER type");
         addColumnIfMissing("anime_info", "source_name", "ALTER TABLE anime_info ADD COLUMN source_name VARCHAR(100) NULL COMMENT '正版来源平台' AFTER description");
@@ -210,6 +211,13 @@ public class DataInitializer implements CommandLineRunner {
         for (AnimeSeed seed : seeds) {
             upsertAnime(seed);
         }
+        cleanupLegacyAnimeRows();
+    }
+
+    private void cleanupLegacyAnimeRows() {
+        jdbcTemplate.update(
+                "DELETE FROM anime_info WHERE title = ? AND (type IS NULL OR tag_names IS NULL)",
+                "SPY\u00d7FAMILY \u95f4\u8c0d\u8fc7\u5bb6\u5bb6");
     }
 
     private void upsertAnime(AnimeSeed seed) {
@@ -222,14 +230,14 @@ public class DataInitializer implements CommandLineRunner {
                 seed.title);
         if (ids.isEmpty()) {
             jdbcTemplate.update(
-                    "INSERT INTO anime_info (title, original_title, cover_image, category_id, category_name, region, type, tag_names, release_year, status, episodes, score, description, source_name, watch_url, trailer_url, view_count) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    seed.title, seed.originalTitle, seed.coverImage, categoryId, seed.categoryName, seed.region, seed.type, seed.tagNames,
+                    "INSERT INTO anime_info (title, original_title, cover_image, banner_image, category_id, category_name, region, type, tag_names, release_year, status, episodes, score, description, source_name, watch_url, trailer_url, view_count) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    seed.title, seed.originalTitle, seed.coverImage, seed.bannerImage, categoryId, seed.categoryName, seed.region, seed.type, seed.tagNames,
                     seed.releaseYear, seed.status, seed.episodes, seed.score, seed.description, seed.sourceName, seed.watchUrl, seed.trailerUrl, seed.viewCount);
         } else {
             jdbcTemplate.update(
-                    "UPDATE anime_info SET original_title = ?, cover_image = ?, category_id = ?, category_name = ?, region = ?, type = ?, tag_names = ?, release_year = ?, status = ?, episodes = ?, score = ?, description = ?, source_name = ?, watch_url = ?, trailer_url = ?, view_count = GREATEST(view_count, ?) WHERE id = ?",
-                    seed.originalTitle, seed.coverImage, categoryId, seed.categoryName, seed.region, seed.type, seed.tagNames,
+                    "UPDATE anime_info SET original_title = ?, cover_image = ?, banner_image = ?, category_id = ?, category_name = ?, region = ?, type = ?, tag_names = ?, release_year = ?, status = ?, episodes = ?, score = ?, description = ?, source_name = ?, watch_url = ?, trailer_url = ?, view_count = GREATEST(view_count, ?) WHERE id = ?",
+                    seed.originalTitle, seed.coverImage, seed.bannerImage, categoryId, seed.categoryName, seed.region, seed.type, seed.tagNames,
                     seed.releaseYear, seed.status, seed.episodes, seed.score, seed.description, seed.sourceName, seed.watchUrl, seed.trailerUrl, seed.viewCount, ids.get(0));
         }
     }
@@ -278,6 +286,7 @@ public class DataInitializer implements CommandLineRunner {
         private final String title;
         private final String originalTitle;
         private final String coverImage;
+        private final String bannerImage;
         private final String categoryName;
         private final String region;
         private final String type;
@@ -298,6 +307,7 @@ public class DataInitializer implements CommandLineRunner {
             this.title = title;
             this.originalTitle = originalTitle;
             this.coverImage = coverImage;
+            this.bannerImage = bannerForTitle(title, coverImage);
             this.categoryName = categoryName;
             this.region = region;
             this.type = type;
@@ -311,6 +321,45 @@ public class DataInitializer implements CommandLineRunner {
             this.watchUrl = watchUrl;
             this.trailerUrl = trailerUrl;
             this.viewCount = viewCount;
+        }
+    }
+
+    private static String bannerForTitle(String title, String fallback) {
+        switch (title) {
+            case "葬送的芙莉莲":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1xB.jpg";
+            case "药屋少女的呢喃":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/161645-oqzTZYIvviWI.jpg";
+            case "声之形":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20954-f30bHMXa5Qoe.jpg";
+            case "冰海战记 第二季":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/136430-ktoFZnyubhHg.jpg";
+            case "进击的巨人 最终季":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/110277-iuGn6F5bK1U1.jpg";
+            case "咒术回战 第二季":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/145064-esDtAY2He7sk.jpg";
+            case "孤独摇滚！":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/130003-5F90a7BtsPQN.jpg";
+            case "电锯人":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/127230-o8IRwCGVr9KW.jpg";
+            case "赛博朋克：边缘行者":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/120377-c15oLS8CA31s.jpg";
+            case "奇巧计程车":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/128547-aVWJmZz9dwJJ.jpg";
+            case "迷宫饭":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/153518-7uRvV7SLqmHV.jpg";
+            case "铃芽之旅":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/142770-YgESt2HJXlNg.jpg";
+            case "天气之子":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/106286-3oKwiwjd7Wkm.jpg";
+            case "紫罗兰永恒花园":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21827-ROucgYiiiSpR.jpg";
+            case "来自深渊":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/97986-C55UnbJKB7ZF.jpg";
+            case "辉夜大小姐想让我告白":
+                return "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101921-GgvvFhlNhzlF.jpg";
+            default:
+                return fallback;
         }
     }
 }

@@ -6,7 +6,7 @@
         <span>AnimeHub</span>
       </div>
       <div class="header-right">
-        <el-menu mode="horizontal" router :default-active="$route.path" background-color="#101018" text-color="#e4e4e7" active-text-color="#fb7185">
+        <el-menu mode="horizontal" router :default-active="$route.path" background-color="transparent" text-color="#3f3f46" active-text-color="#e11d48">
           <el-menu-item index="/home">首页</el-menu-item>
           <el-menu-item index="/anime">动漫库</el-menu-item>
           <el-menu-item index="/news">资讯</el-menu-item>

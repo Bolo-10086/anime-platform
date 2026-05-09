@@ -10,7 +10,7 @@
       <el-carousel-item v-for="item in featuredAnime" :key="item.id">
         <div
           class="hero-anime"
-          :style="{ backgroundImage: `linear-gradient(90deg, rgba(17,24,39,.92), rgba(17,24,39,.58), rgba(17,24,39,.18)), url(${item.coverImage})` }"
+          :style="{ backgroundImage: `linear-gradient(90deg, rgba(17,24,39,.88), rgba(17,24,39,.52), rgba(17,24,39,.18)), url(${displayBanner(item)})` }"
         >
           <div class="hero-content">
             <div class="hero-meta">
@@ -179,6 +179,9 @@ export default {
     },
     splitTags(value) {
       return value ? value.split(',').map(item => item.trim()).filter(Boolean).slice(0, 5) : []
+    },
+    displayBanner(item) {
+      return item.bannerImage || item.coverImage
     },
     openExternal(url) {
       if (url) {

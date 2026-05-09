@@ -15,6 +15,7 @@ public class AnimeInfo {
     private String title;
     private String originalTitle;
     private String coverImage;
+    private String bannerImage;
     private Long categoryId;
     private String categoryName;
     private String region;
@@ -62,6 +63,14 @@ public class AnimeInfo {
 
     public void setCoverImage(String coverImage) {
         this.coverImage = coverImage;
+    }
+
+    public String getBannerImage() {
+        return bannerImage;
+    }
+
+    public void setBannerImage(String bannerImage) {
+        this.bannerImage = bannerImage;
     }
 
     public Long getCategoryId() {
